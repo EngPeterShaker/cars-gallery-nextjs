@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { Col, Card, CardContent, Link, Spacer, Text, Flex } from "vcc-ui";
 import { CarItem } from "@/types/Car.model";
 
@@ -23,7 +24,7 @@ import { CarItem } from "@/types/Car.model";
  *
  */
 const CarCard = (carItem: any) => {
-	const { imageUrl, modelName, bodyType } = carItem.carItem;
+	const { imageUrl, modelName, bodyType, id } = carItem.carItem;
 	return (
 		// <div>
 		<Col
@@ -35,7 +36,13 @@ const CarCard = (carItem: any) => {
 			}}
 		>
 			<Card>
-				<img src={imageUrl} />
+				<Image
+					src={imageUrl}
+					width={"100%"}
+					height={"100%"}
+					alt={`${id} - car image `}
+					priority={true}
+				/>
 				<CardContent>
 					<Text variant="ootah">{modelName}</Text>
 					<Text>{bodyType}</Text>
@@ -49,12 +56,12 @@ const CarCard = (carItem: any) => {
 						}}
 					>
 						<Flex>
-							<Link href="https://www.volvocars.com/" arrow="right">
+							<Link href={`/learn/${id}`} arrow="right">
 								Learn
 							</Link>
 						</Flex>
 						<Flex>
-							<Link href="https://www.volvocars.com/" arrow="right">
+							<Link href={`/shop/${id}`} arrow="right">
 								Shop
 							</Link>
 						</Flex>

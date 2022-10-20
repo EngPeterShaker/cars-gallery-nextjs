@@ -17,14 +17,6 @@ import cars from "@/public/api/cars.json";
 import { CarItem } from "@/types/Car.model";
 import CarCard from "@/components/CarCard";
 
-export const getStaticProps = async () => {
-	return {
-		props: {
-			carsList: cars,
-		},
-	};
-};
-
 // const Home: NextPage = (CarsList:CarItem[]) => {
 const Home: NextPage = (props: any) => {
 	const { carsList = [] } = props;
@@ -44,7 +36,7 @@ const Home: NextPage = (props: any) => {
 					{/* <div className={styles.wrapper}> */}
 					{carsList.map((carItem: CarItem) => {
 						console.log({ carItem });
-						return <CarCard carItem={carItem} />;
+						return <CarCard carItem={carItem} key={carItem.id} />;
 					})}
 				</Flex>
 				{/* // extend={{
@@ -107,3 +99,11 @@ const Home: NextPage = (props: any) => {
 };
 
 export default Home;
+
+export const getStaticProps = async () => {
+	return {
+		props: {
+			carsList: cars,
+		},
+	};
+};
