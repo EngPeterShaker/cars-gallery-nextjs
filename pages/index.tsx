@@ -16,10 +16,18 @@ import styles from "@/styles/Home.module.css";
 import cars from "@/public/api/cars.json";
 import { CarItem } from "@/types/Car.model";
 import CarCard from "@/components/CarCard";
+import { useSelector, useDispatch } from "react-redux";
+import { carAction } from "../store/car-slice";
+import { useEffect } from "react";
 
 // const Home: NextPage = (CarsList:CarItem[]) => {
 const Home: NextPage = (props: any) => {
+	const dispatch = useDispatch();
 	const { carsList = [] } = props;
+	useEffect(() => {
+		dispatch(carAction.updateCarsList(carsList));
+	}, [dispatch]);
+
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -35,7 +43,6 @@ const Home: NextPage = (props: any) => {
 				<Flex extend={{ flexDirection: "row" }}>
 					{/* <div className={styles.wrapper}> */}
 					{carsList.map((carItem: CarItem) => {
-						console.log({ carItem });
 						return <CarCard carItem={carItem} key={carItem.id} />;
 					})}
 				</Flex>
@@ -100,7 +107,7 @@ const Home: NextPage = (props: any) => {
 
 export default Home;
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
 	return {
 		props: {
 			carsList: cars,

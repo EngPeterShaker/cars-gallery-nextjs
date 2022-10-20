@@ -1,8 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
+import CarCard from "@/components/CarCard";
+import { selectCarById } from "@/store/car-slice";
+import { CarItem } from "@/types/Car.model";
 // import { useRouter } from "next/router";
 // import styled from "styled-components";
 // import PropTypes from "prop-types";
-import { Link } from "vcc-ui";
+import { Link as VccLink } from "vcc-ui";
+import Link from "next/link";
 
 // #region constants
 
@@ -17,27 +23,25 @@ import { Link } from "vcc-ui";
 // #endregion
 
 // #region component
-const propTypes = {};
-
-const defaultProps = {};
 
 /**
  *
  */
-const LearnCar = (props: any) => {
-	const { params } = props;
-	// console.log({ params });
-	// const router = useRouter();
-	// const id = router.query.id as string;
+const LearnCar = ({ params }: any) => {
 	const { id } = params;
-	// console.log({ id });
+	const SelectedCarItem: CarItem = useSelector(({ car: carSLice }) => {
+		return selectCarById(carSLice as any, id);
+	});
+	console.log(`SelectedCarItem`, SelectedCarItem);
+
 	return (
 		<div>
-			<Link href="/" arrow="left">
-				Home
+			<Link href="/">
+				<VccLink arrow="left">Home</VccLink>
 			</Link>
 			{/* <span onClick={() => router.back()}>Click here to go back</span> */}
 			<div>Welcome to {id}</div>
+			<CarCard carItem={SelectedCarItem} />
 		</div>
 	);
 };

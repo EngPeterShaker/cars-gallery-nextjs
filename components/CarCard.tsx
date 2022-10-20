@@ -1,7 +1,16 @@
 import React from "react";
 import Image from "next/image";
-import { Col, Card, CardContent, Link, Spacer, Text, Flex } from "vcc-ui";
+import {
+	Col,
+	Card,
+	CardContent,
+	Link as VccLink,
+	Spacer,
+	Text,
+	Flex,
+} from "vcc-ui";
 import { CarItem } from "@/types/Car.model";
+import Link from "next/link";
 
 // #region constants
 
@@ -23,8 +32,8 @@ import { CarItem } from "@/types/Car.model";
 /**
  *
  */
-const CarCard = (carItem: any) => {
-	const { imageUrl, modelName, bodyType, id } = carItem.carItem;
+const CarCard = ({ carItem }) => {
+	const { imageUrl, modelName, bodyType, id } = carItem;
 	return (
 		// <div>
 		<Col
@@ -56,13 +65,13 @@ const CarCard = (carItem: any) => {
 						}}
 					>
 						<Flex>
-							<Link href={`/learn/${id}`} arrow="right">
-								Learn
+							<Link href={`/learn/${id}`}>
+								<VccLink arrow="right">Learn</VccLink>
 							</Link>
 						</Flex>
 						<Flex>
-							<Link href={`/shop/${id}`} arrow="right">
-								Shop
+							<Link href={`/shop/${id}`}>
+								<VccLink arrow="right">Shop</VccLink>
 							</Link>
 						</Flex>
 					</Flex>

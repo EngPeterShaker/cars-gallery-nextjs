@@ -1,9 +1,12 @@
 import React from "react";
 import { useRouter } from "next/router";
 // import styled from "styled-components";
-
-import PropTypes from "prop-types";
-import { Link } from "vcc-ui";
+import { Link as VccLink } from "vcc-ui";
+import { useSelector } from "react-redux";
+import { selectCarById } from "@/store/car-slice";
+import CarCard from "@/components/CarCard";
+import { CarItem } from "@/types/Car.model";
+import Link from "next/link";
 
 // #region constants
 
@@ -18,34 +21,29 @@ import { Link } from "vcc-ui";
 // #endregion
 
 // #region component
-const propTypes = {};
-
-const defaultProps = {};
 
 /**
  *
  */
-const ShopCar = (props: any) => {
-	const router = useRouter();
-
-	const { params } = props;
+const ShopCar = ({ params }: any) => {
+	// const { params } = props;
 	const { id } = params;
-	// console.log({ params });
-	// const router = useRouter();
-	// const id = router.query.id as string;
+
+	const SelectedCarItem: CarItem = useSelector(({ car: carSLice }) => {
+		return selectCarById(carSLice as any, id);
+	});
 	return (
 		<div>
-			<Link href="/" arrow="left">
-				Home
+			<Link href="/">
+				<VccLink arrow="left">Home</VccLink>
 			</Link>
 			{/* <span onClick={() => router.back()}>Click here to go back</span> */}
 			<div>Shop now {id}</div>
+			<CarCard carItem={SelectedCarItem} />
 		</div>
 	);
 };
 
-ShopCar.propTypes = propTypes;
-ShopCar.defaultProps = defaultProps;
 // #endregion
 
 export default ShopCar;
