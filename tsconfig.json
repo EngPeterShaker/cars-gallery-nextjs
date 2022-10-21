@@ -1,7 +1,8 @@
 {
 	"compilerOptions": {
-		"target": "es5",
-		"lib": ["dom", "dom.iterable", "esnext"],
+		"target": "es2015",
+		// "target": "es5",
+		// "lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": true,
@@ -14,9 +15,17 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
-		"baseUrl": "./",
 		// "composite": true,
-		// "downlevelIteration": true,
+		"downlevelIteration": true,
+		"lib": [
+			"dom",
+			"dom.iterable",
+			"es5",
+			"esnext",
+			"es2015.collection",
+			"es2015.iterable"
+		],
+		"baseUrl": "./",
 		// "declaration": true,
 		"paths": {
 			// "@/components/*": ["components/*"],

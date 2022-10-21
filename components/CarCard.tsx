@@ -13,7 +13,9 @@ import { CarItem } from "@/types/Car.model";
 import Link from "next/link";
 
 // #region constants
-
+interface Props {
+	carItem: CarItem;
+}
 // #endregion
 
 // #region styled-components
@@ -32,7 +34,8 @@ import Link from "next/link";
 /**
  *
  */
-const CarCard = ({ carItem }) => {
+const CarCard = (props: Props) => {
+	const { carItem } = props;
 	const { imageUrl, modelName, bodyType, id } = carItem;
 	return (
 		// <div>

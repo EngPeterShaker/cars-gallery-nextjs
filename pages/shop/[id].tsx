@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 // import styled from "styled-components";
 import { Link as VccLink } from "vcc-ui";
 import { useSelector } from "react-redux";
-import { selectCarById } from "@/store/car-slice";
+import { selectCarById, StoreState } from "@/store/car-slice";
 import CarCard from "@/components/CarCard";
 import { CarItem } from "@/types/Car.model";
 import Link from "next/link";
@@ -29,9 +29,12 @@ const ShopCar = ({ params }: any) => {
 	// const { params } = props;
 	const { id } = params;
 
-	const SelectedCarItem: CarItem = useSelector(({ car: carSLice }) => {
-		return selectCarById(carSLice as any, id);
-	});
+	const SelectedCarItem: CarItem | undefined = useSelector(
+		({ car: carSLice }: { car: StoreState }) => {
+			return selectCarById(carSLice as any, id);
+		}
+	);
+
 	return (
 		<div>
 			<Link href="/">
@@ -39,7 +42,7 @@ const ShopCar = ({ params }: any) => {
 			</Link>
 			{/* <span onClick={() => router.back()}>Click here to go back</span> */}
 			<div>Shop now {id}</div>
-			<CarCard carItem={SelectedCarItem} />
+			{SelectedCarItem && <CarCard carItem={SelectedCarItem} />}
 		</div>
 	);
 };

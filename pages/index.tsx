@@ -1,32 +1,27 @@
+import { useEffect } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import {
-	Card,
-	Flex,
-	Text,
-	CardContent,
-	Col,
-	Grid,
-	Row,
-	Spacer,
-	Link,
-} from "vcc-ui";
+import { Flex } from "vcc-ui";
 import styles from "@/styles/Home.module.css";
 import cars from "@/public/api/cars.json";
 import { CarItem } from "@/types/Car.model";
 import CarCard from "@/components/CarCard";
 import { useSelector, useDispatch } from "react-redux";
-import { carAction } from "../store/car-slice";
-import { useEffect } from "react";
+import { carAction, StoreState } from "../store/car-slice";
+import Filter from "@/components/Filter";
 
 // const Home: NextPage = (CarsList:CarItem[]) => {
 const Home: NextPage = (props: any) => {
 	const dispatch = useDispatch();
 	const { carsList = [] } = props;
 	useEffect(() => {
-		dispatch(carAction.updateCarsList(carsList));
-	}, [dispatch]);
+		dispatch(carAction.updateCarsList({ carsList }));
+	}, [dispatch, carsList]);
+
+	const updatedCarsList: CarItem[] = useSelector(
+		({ car: carSLice }: { car: StoreState }) => carSLice.updatedCarsList
+	);
 
 	return (
 		<div className={styles.container}>
@@ -40,9 +35,10 @@ const Home: NextPage = (props: any) => {
 				{/* <h1 className={styles.title}>
 					Welcome to <a href="https://nextjs.org">Next.js!</a>
 				</h1> */}
+				<Filter />
 				<Flex extend={{ flexDirection: "row" }}>
 					{/* <div className={styles.wrapper}> */}
-					{carsList.map((carItem: CarItem) => {
+					{updatedCarsList.map((carItem: CarItem) => {
 						return <CarCard carItem={carItem} key={carItem.id} />;
 					})}
 				</Flex>
