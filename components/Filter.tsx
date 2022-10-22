@@ -34,28 +34,20 @@ const Filter = () => {
 	const carModelTypes: string[] = useSelector(
 		({ car: carSLice }: { car: StoreState }) => getAllCarsBodyTypes(carSLice)
 	);
-	// const carModelTypes: string[] = useSelector(({ car: carSLice }) =>
-	// 	getAllCarsBodyTypes(carSLice as any)
-	// );
 
-	console.log(`carModelTypes`, carModelTypes);
 	const onChange = (valueSelected: string) => {
 		setValue(valueSelected);
-		console.log(`valueSelected`, valueSelected);
 		dispatch(carAction.setSelectedFilter(valueSelected));
 	};
 	return (
 		<SelectInput
-			label={"Label"}
+			label={"Filter by body type"}
 			value={value}
 			onChange={(e) => onChange(e.target.value)}
 		>
-			<option value="c30" disabled>
-				Select a Car body type
-			</option>
-			<option value="all" selected>
+			{/* <option value="all" selected>
 				Show All
-			</option>
+			</option> */}
 			{carModelTypes.map((modelType) => {
 				return (
 					<option key={modelType} value={modelType}>
@@ -67,8 +59,6 @@ const Filter = () => {
 	);
 };
 
-// Filter.propTypes = propTypes;
-// Filter.defaultProps = defaultProps;
 // #endregion
 
 export default Filter;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Image from "next/image";
 import {
 	Col,
@@ -8,9 +8,11 @@ import {
 	Spacer,
 	Text,
 	Flex,
+	View,
 } from "vcc-ui";
 import { CarItem } from "@/types/Car.model";
 import Link from "next/link";
+import styled from "styled-components";
 
 // #region constants
 interface Props {
@@ -19,7 +21,15 @@ interface Props {
 // #endregion
 
 // #region styled-components
-
+const CardStyled = styled(View)`
+	padding: 4em;
+	margin: 2em;
+	background: white;
+	img {
+		width: 100%;
+		height: 100%;
+	}
+`;
 // #endregion
 
 // #region functions
@@ -27,9 +37,6 @@ interface Props {
 // #endregion
 
 // #region component
-// const propTypes = {};
-
-// const defaultProps = {};
 
 /**
  *
@@ -39,23 +46,25 @@ const CarCard = (props: Props) => {
 	const { imageUrl, modelName, bodyType, id } = carItem;
 	return (
 		// <div>
-		<Col
-			size={{
-				default: 4,
-				fromM: 3,
-				fromL: 6,
-				fromXL: 10,
-			}}
-		>
-			<Card>
-				<Image
-					src={imageUrl}
-					width={"100%"}
-					height={"100%"}
-					alt={`${id} - car image `}
-					priority={true}
-				/>
-				<CardContent>
+		// <Col
+		// 	size={{
+		// 		default: 10,
+		// 		fromM: 4,
+		// 		fromL: 3,
+		// 		fromXL: 6,
+		// 	}}
+		// >
+		<Fragment>
+			<CardStyled>
+				<View>
+					<Image
+						src={imageUrl}
+						// width={"100%"}
+						// height={"100%"}
+						layout="fill"
+						alt={`${id} - car image `}
+						priority={true}
+					/>
 					<Text variant="ootah">{modelName}</Text>
 					<Text>{bodyType}</Text>
 					<Flex
@@ -78,11 +87,12 @@ const CarCard = (props: Props) => {
 							</Link>
 						</Flex>
 					</Flex>
-				</CardContent>
-			</Card>
+				</View>
+			</CardStyled>
 			<Spacer />
 			<Spacer />
-		</Col>
+		</Fragment>
+		// </Col>
 	);
 };
 
