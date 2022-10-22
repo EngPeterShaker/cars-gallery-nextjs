@@ -45,9 +45,7 @@ const Filter = () => {
 			value={value}
 			onChange={(e) => onChange(e.target.value)}
 		>
-			{/* <option value="all" selected>
-				Show All
-			</option> */}
+			<option value="all">Show All</option>
 			{carModelTypes.map((modelType) => {
 				return (
 					<option key={modelType} value={modelType}>

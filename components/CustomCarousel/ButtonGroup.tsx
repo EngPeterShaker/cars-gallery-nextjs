@@ -1,6 +1,4 @@
 import * as React from "react";
-import RightArrowIcon from "@/src/elements/RightArrowIcon";
-import LeftArrowIcon from "@/src/elements/LeftArrowIcon";
 import styled from "styled-components";
 import ChevronCircledIcon from "@/src/elements/ChevronCircled";
 
@@ -19,12 +17,6 @@ const CustomButtonGroup = ({ next, previous, goToSlide, carouselState }) => {
 			<span onClick={() => next()} className="custom-left-arrow">
 				<ChevronCircledIcon direction={"right"} />
 			</span>
-
-			{/* <button
-				onClick={() => goToSlide(Math.floor(Math.random() * totalItems + 1))}
-			>
-				Go to a random slide
-			</button> */}
 		</BtnGroupWrapper>
 	);
 };

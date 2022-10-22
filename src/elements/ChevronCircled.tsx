@@ -12,7 +12,6 @@ const IconWrapper = styled.span<{ direction: string }>`
 		&:hover {
 			width: 3.55em;
 			height: 3.55em;
-			// background: #8080804a;
 		}
 	}
 `;
@@ -30,7 +29,6 @@ const directionInDegrees = {
 
 const ChevronCircled = (props: Props) => {
 	const { direction = "right" } = props;
-	console.log(`object`, directionInDegrees[direction]);
 	return (
 		<IconWrapper direction={directionInDegrees[direction]}>
 			<ChevronCircledIcon />

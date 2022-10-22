@@ -11,21 +11,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { carAction, StoreState } from "../store/car-slice";
 import Filter from "@/components/Filter";
 import CustomCarousel from "@/components/CustomCarousel";
-import useWindowSize from "@/hooks/useWindowSize";
+import useWindowSize, { Size } from "@/src/hooks/useWindowSize";
 
 // const Home: NextPage = (CarsList:CarItem[]) => {
 const Home: NextPage = (props: any) => {
 	const dispatch = useDispatch();
 	const { carsList = [] } = props;
+
 	useEffect(() => {
 		dispatch(carAction.updateCarsList({ carsList }));
 	}, [dispatch, carsList]);
+
 	const updatedCarsList: CarItem[] = useSelector(
 		({ car: carSLice }: { car: StoreState }) => carSLice.updatedCarsList
 	);
-
-	const deviceType = useWindowSize();
-	console.log(`deviceType`, deviceType);
 
 	return (
 		<div className={styles.container}>
