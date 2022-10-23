@@ -6,8 +6,13 @@ const BtnGroupWrapper = styled.div`
 	text-align: right;
 `;
 
-const CustomButtonGroup = ({ next, previous, goToSlide, carouselState }) => {
-	const { totalItems, currentSlide } = carouselState;
+interface Props {
+	next: () => void;
+	previous: () => void;
+	goToSlide: () => void;
+}
+const CustomButtonGroup = (props: Props) => {
+	const { next, previous, goToSlide } = props;
 	return (
 		<BtnGroupWrapper className="custom-button-group">
 			<span onClick={() => previous()} className="custom-left-arrow">
@@ -20,20 +25,5 @@ const CustomButtonGroup = ({ next, previous, goToSlide, carouselState }) => {
 		</BtnGroupWrapper>
 	);
 };
-const CustomButtonGroupAsArrows = ({ next, previous }) => {
-	return (
-		<div
-			style={{
-				textAlign: "center",
-			}}
-		>
-			<h4>These buttons can be positioned anywhere you want on the screen</h4>
-			<button onClick={previous}>Prev</button>
-			<button onClick={next}>Next</button>
-		</div>
-	);
-};
 
-export { CustomButtonGroup, CustomButtonGroupAsArrows };
-
-// export default ButtonGroup;
+export { CustomButtonGroup };

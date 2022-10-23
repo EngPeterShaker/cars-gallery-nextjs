@@ -23,7 +23,7 @@ import useWindowSize from "@/src/hooks/useWindowSize";
 /**
  *
  */
-const CustomCarousel = (props) => {
+const CustomCarousel = (props: any) => {
 	const deviceType: string = useWindowSize();
 
 	return (
@@ -33,8 +33,6 @@ const CustomCarousel = (props) => {
 				draggable={true}
 				responsive={ResponsiveConfig}
 				ssr={true} // means to render carousel on server-side.
-				// autoPlay
-				// autoPlaySpeed={1000}
 				keyBoardControl={true}
 				customTransition="smooth 500"
 				transitionDuration={500}
@@ -45,7 +43,21 @@ const CustomCarousel = (props) => {
 				itemClass="carousel-item-padding-10-px"
 				renderButtonGroupOutside={true}
 				customButtonGroup={
-					deviceType === "Desktop" ? <CustomButtonGroup /> : <></>
+					deviceType === "Desktop" ? (
+						<CustomButtonGroup
+							next={function (): void {
+								throw new Error("Function not implemented.");
+							}}
+							previous={function (): void {
+								throw new Error("Function not implemented.");
+							}}
+							goToSlide={function (): void {
+								throw new Error("Function not implemented.");
+							}}
+						/>
+					) : (
+						<></>
+					)
 				}
 				showDots={deviceType === "Desktop" ? false : true}
 				slidesToSlide={1}
