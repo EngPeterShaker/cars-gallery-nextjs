@@ -14,7 +14,7 @@ interface Props {
 const CustomButtonGroup = (props: Props) => {
 	const { next, previous, goToSlide } = props;
 	return (
-		<BtnGroupWrapper className="custom-button-group">
+		<BtnGroupWrapper className="custom-button-group" data-cy="button-group">
 			<span onClick={() => previous()} className="custom-left-arrow">
 				{/* <LeftArrowIcon /> */}
 				<ChevronCircledIcon direction={"left"} />
