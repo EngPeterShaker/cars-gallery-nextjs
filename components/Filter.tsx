@@ -1,22 +1,15 @@
 import React, { useState } from "react";
-// import styled from "styled-components";
-// import PropTypes from "prop-types";
 import { SelectInput } from "vcc-ui";
 import { useSelector, useDispatch } from "react-redux";
+import styled from "styled-components";
 import { getAllCarsBodyTypes } from "@/store/car-slice";
 import { carAction } from "@/store/car-slice";
 import { StoreState } from "../store/car-slice";
 
-// #region constants
-
-// #endregion
-
 // #region styled-components
-
-// #endregion
-
-// #region functions
-
+const FilterContainer = styled.div`
+	padding: 2em 1em;
+`;
 // #endregion
 
 // #region component
@@ -40,20 +33,22 @@ const Filter = () => {
 		dispatch(carAction.setSelectedFilter(valueSelected));
 	};
 	return (
-		<SelectInput
-			label={"Filter by body type"}
-			value={value}
-			onChange={(e) => onChange(e.target.value)}
-		>
-			<option value="all">Show All</option>
-			{carModelTypes.map((modelType) => {
-				return (
-					<option key={modelType} value={modelType}>
-						{modelType}
-					</option>
-				);
-			})}
-		</SelectInput>
+		<FilterContainer>
+			<SelectInput
+				label={"Filter by body type"}
+				value={value}
+				onChange={(e) => onChange(e.target.value)}
+			>
+				<option value="all">Show All</option>
+				{carModelTypes.map((modelType) => {
+					return (
+						<option key={modelType} value={modelType}>
+							{modelType}
+						</option>
+					);
+				})}
+			</SelectInput>
+		</FilterContainer>
 	);
 };
 

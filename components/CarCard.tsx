@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 import Image from "next/image";
-import { Link as VccLink, Spacer, Text, Flex, View, Block } from "vcc-ui";
+import { Link, Spacer, Text, View, Block } from "vcc-ui";
 import { CarItem } from "@/types/Car.model";
-import Link from "next/link";
 import styled from "styled-components";
 
-// #region constants
+// #region types
 interface Props {
 	carItem: CarItem;
+	showLinks?: boolean;
 }
 // #endregion
 
@@ -20,53 +20,12 @@ const CardStyled = styled(View)`
 `;
 // #endregion
 
-// #region functions
-
-// #endregion
-
-// #region component
-
-/**
- *
- */
 const CarCard = (props: Props) => {
-	const { carItem } = props;
+	const { carItem, showLinks = true } = props;
 	const { imageUrl, modelName, bodyType, id, modelType } = carItem;
 	return (
 		<Fragment>
 			<CardStyled>
-				{/* <View>
-					<Image
-						src={imageUrl}
-						width={"100%"}
-						height={"100%"}
-						// layout="fill"
-						alt={`${id} - car image `}
-						priority={true}
-					/>
-					<Text variant="ootah">{modelName}</Text>
-					<Text>{bodyType}</Text>
-					<Flex
-						extend={{
-							flexDirection: "row",
-							flexWrap: "wrap",
-							justifyContent: "space-evenly",
-							alignItems: "stretch",
-							alignContent: "center",
-						}}
-					>
-						<Flex>
-							<Link href={`/learn/${id}`}>
-								<VccLink arrow="right">Learn</VccLink>
-							</Link>
-						</Flex>
-						<Flex>
-							<Link href={`/shop/${id}`}>
-								<VccLink arrow="right">Shop</VccLink>
-							</Link>
-						</Flex>
-					</Flex>
-				</View> */}
 				<View
 					padding={2}
 					marginBottom={2}
@@ -95,8 +54,10 @@ const CarCard = (props: Props) => {
 							{modelName}
 						</Text>
 						<Block extend={{ display: "block" }}>
-							{/* <Text extend={{ fontSize: '2rem', color: 'navy' }}>Big Navy Columbus.</Text> */}
-							<Text variant="kelly" extend={{ color: "#8c8c8c" }}>
+							<Text
+								variant="kelly"
+								extend={{ color: "#8c8c8c", padding: "2em" }}
+							>
 								{modelType}
 							</Text>
 						</Block>
@@ -110,15 +71,17 @@ const CarCard = (props: Props) => {
 						priority
 						alt={`${modelName} - ${modelType}`}
 					/>
-					<View direction="row" justifyContent="center">
-						<Link href={`/learn/${id}`}>
-							<VccLink arrow="right">Learn</VccLink>
-						</Link>
-						<Spacer />
-						<Link href={`/shop/${id}`}>
-							<VccLink arrow="right">Shop</VccLink>
-						</Link>
-					</View>
+					{showLinks && (
+						<View direction="row" justifyContent="center">
+							<Link href={`/learn/${id}`} arrow="right">
+								Learn
+							</Link>
+							<Spacer />
+							<Link href={`/shop/${id}`} arrow="right">
+								Shop
+							</Link>
+						</View>
+					)}
 				</View>
 			</CardStyled>
 			<Spacer />

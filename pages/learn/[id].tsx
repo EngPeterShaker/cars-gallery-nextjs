@@ -1,56 +1,57 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
-
+import { Link } from "vcc-ui";
 import CarCard from "@/components/CarCard";
-import { selectCarById, StoreState } from "@/store/car-slice";
 import { CarItem } from "@/types/Car.model";
-// import { useRouter } from "next/router";
-// import styled from "styled-components";
-// import PropTypes from "prop-types";
-import { Link as VccLink } from "vcc-ui";
-import Link from "next/link";
+import { selectCarById, StoreState } from "@/store/car-slice";
+import styled from "styled-components";
 
-// #region constants
-
+// #region types
+interface Props {
+	params: {
+		id: string;
+	};
+}
 // #endregion
 
-// #region styled-components
+//#region styles
+const CardContainer = styled.div`
+	padding: 3em;
+	width: 50%;
+	margin: 0 auto;
+`;
+const LinkStyled = styled(Link)`
+	padding: 3em;
+	width: 100%;
+	margin: 2em auto;
+	margin-left: 2em;
+`;
+//#endregion
 
-// #endregion
-
-// #region functions
-
-// #endregion
-
-// #region component
-
-/**
- *
- */
-const LearnCar = ({ params }: any) => {
+const LearnCar = (props: Props) => {
+	const { params } = props;
 	const { id } = params;
+
 	const SelectedCarItem: CarItem | undefined = useSelector(
 		({ car: carSLice }: { car: StoreState }) => {
 			return selectCarById(carSLice as any, id);
 		}
 	);
-	console.log(`SelectedCarItem`, SelectedCarItem);
 
 	return (
-		<div>
-			<Link href="/">
-				<VccLink arrow="left">Home</VccLink>
-			</Link>
-			{/* <span onClick={() => router.back()}>Click here to go back</span> */}
-			<div>Welcome to {id}</div>
-			{SelectedCarItem && <CarCard carItem={SelectedCarItem} />}
-		</div>
+		<Fragment>
+			<LinkStyled href="/" arrow="left">
+				Home
+			</LinkStyled>
+			<CardContainer>
+				<div>Let's learn more about {id}</div>
+				{SelectedCarItem && (
+					<CarCard carItem={SelectedCarItem} showLinks={false} />
+				)}
+			</CardContainer>
+		</Fragment>
 	);
 };
-
-// LearnCar.propTypes = propTypes;
-// LearnCar.defaultProps = defaultProps;
-// #endregion
 
 export default LearnCar;
 

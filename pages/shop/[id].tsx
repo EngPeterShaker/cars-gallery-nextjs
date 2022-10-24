@@ -1,32 +1,35 @@
-import React from "react";
-import { useRouter } from "next/router";
-// import styled from "styled-components";
-import { Link as VccLink } from "vcc-ui";
+import React, { Fragment } from "react";
+import { Link, Text, View } from "vcc-ui";
 import { useSelector } from "react-redux";
 import { selectCarById, StoreState } from "@/store/car-slice";
 import CarCard from "@/components/CarCard";
 import { CarItem } from "@/types/Car.model";
-import Link from "next/link";
+import styled from "styled-components";
 
-// #region constants
+//#region types
+interface Props {
+	params: {
+		id: string;
+	};
+}
+//#endregion
 
-// #endregion
+//#region styles
+const CardContainer = styled.div`
+	padding: 3em;
+	width: 50%;
+	margin: 0 auto;
+`;
+const LinkStyled = styled(Link)`
+	padding: 3em;
+	width: 100%;
+	margin: 2em auto;
+	margin-left: 2em;
+`;
+//#endregion
 
-// #region styled-components
-
-// #endregion
-
-// #region functions
-
-// #endregion
-
-// #region component
-
-/**
- *
- */
-const ShopCar = ({ params }: any) => {
-	// const { params } = props;
+const ShopCar = (props: Props) => {
+	const { params } = props;
 	const { id } = params;
 
 	const SelectedCarItem: CarItem | undefined = useSelector(
@@ -36,14 +39,19 @@ const ShopCar = ({ params }: any) => {
 	);
 
 	return (
-		<div>
-			<Link href="/">
-				<VccLink arrow="left">Home</VccLink>
-			</Link>
-			{/* <span onClick={() => router.back()}>Click here to go back</span> */}
-			<div>Shop now {id}</div>
-			{SelectedCarItem && <CarCard carItem={SelectedCarItem} />}
-		</div>
+		<Fragment>
+			<LinkStyled href="/" arrow="left">
+				Home
+			</LinkStyled>
+			<CardContainer>
+				<Text as="h2" variant="peary">
+					Shop now {id}
+				</Text>
+				{SelectedCarItem && (
+					<CarCard carItem={SelectedCarItem} showLinks={false} />
+				)}
+			</CardContainer>
+		</Fragment>
 	);
 };
 
