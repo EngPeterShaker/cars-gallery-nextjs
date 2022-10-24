@@ -1,6 +1,7 @@
 import configureStore from "redux-mock-store";
 import { initialState } from "@/store/intialState";
 import sinon from "sinon";
+import { AnyAction } from "@reduxjs/toolkit";
 const mockStore = configureStore();
 
 describe("App", () => {
@@ -17,15 +18,17 @@ describe("App", () => {
 
 	it("should throw an error when the action is not a plain object", () => {
 		const store = mockStore({});
+		const action = () => {};
 
 		expect(() => {
-			store.dispatch(() => {});
+			// @ts-ignore
+			return store.dispatch(action);
 		}).to.throw(
 			"Actions must be plain objects. " +
 				"Use custom middleware for async actions."
 		);
 	});
-	
+
 	describe("if it is a function", () => {
 		it("returns the result of getState call", () => {
 			const getState = sinon.spy();

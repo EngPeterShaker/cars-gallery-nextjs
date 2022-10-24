@@ -1,10 +1,11 @@
 import React, { Fragment } from "react";
 import { Link, Text, View } from "vcc-ui";
 import { useSelector } from "react-redux";
-import { selectCarById, StoreState } from "@/store/car-slice";
 import CarCard from "@/components/CarCard";
 import { CarItem } from "@/types/Car.model";
 import styled from "styled-components";
+import { StoreState } from "@/types/State.models";
+import { selectCarById } from "@/store/selectors";
 
 //#region types
 interface Props {
