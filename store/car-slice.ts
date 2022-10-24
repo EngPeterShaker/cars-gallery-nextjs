@@ -1,17 +1,6 @@
 import { CarItem } from "@/types/Car.model";
-import { createSlice, createSelector } from "@reduxjs/toolkit";
-
-export type StoreState = {
-	allCarsList: CarItem[];
-	updatedCarsList: CarItem[];
-	filter: string;
-};
-
-const initialState: StoreState = {
-	allCarsList: [],
-	updatedCarsList: [],
-	filter: "all",
-};
+import { createSlice } from "@reduxjs/toolkit";
+import { initialState } from "./intialState";
 
 const carSlice = createSlice({
 	name: "car",
@@ -39,20 +28,3 @@ const carSlice = createSlice({
 export default carSlice;
 
 export const carAction = carSlice.actions;
-
-//Selectors
-export const getCarsList = (state: StoreState) => state.allCarsList;
-
-export const selectCarById = createSelector(
-	getCarsList,
-	(_: any, id: string) => id,
-	(carsList, id) => carsList.find((carItem: CarItem) => carItem.id === id)
-);
-
-// @returns a dynamic list of all body types in the carsList
-export const getAllCarsBodyTypes = createSelector(getCarsList, (carsList) => {
-	const duplicateArrayOFBodyTypes = carsList?.map(
-		(carItem: CarItem) => carItem.bodyType
-	);
-	return [...new Set(duplicateArrayOFBodyTypes)];
-});

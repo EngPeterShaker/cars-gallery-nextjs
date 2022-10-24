@@ -2,20 +2,15 @@ import React, { useState } from "react";
 import { SelectInput } from "vcc-ui";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import { getAllCarsBodyTypes } from "@/store/car-slice";
 import { carAction } from "@/store/car-slice";
-import { StoreState } from "../store/car-slice";
+import { StoreState } from "@/types/State.models";
+import { getAllCarsBodyTypes } from "@/store/selectors";
 
 // #region styled-components
 const FilterContainer = styled.div`
-	padding: 2em 1em;
+	padding: 4rem 1rem 1rem;
 `;
 // #endregion
-
-// #region component
-const propTypes = {};
-
-const defaultProps = {};
 
 /**
  *

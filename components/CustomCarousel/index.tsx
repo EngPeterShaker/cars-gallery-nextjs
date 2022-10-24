@@ -36,10 +36,7 @@ const CustomCarousel = (props: any) => {
 				keyBoardControl={true}
 				customTransition="smooth 500"
 				transitionDuration={500}
-				// containerClass="carousel-container"
 				removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
-				// deviceType={this.props.deviceType}
-				// dotListClass="custom-dot-list-style"
 				itemClass="carousel-item-padding-10-px"
 				renderButtonGroupOutside={true}
 				customButtonGroup={

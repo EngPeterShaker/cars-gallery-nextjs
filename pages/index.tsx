@@ -2,20 +2,20 @@ import { useEffect } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { Flex, Grid, Row } from "vcc-ui";
 import styles from "@/styles/Home.module.css";
 import cars from "@/public/api/cars.json";
 import { CarItem } from "@/types/Car.model";
 import CarCard from "@/components/CarCard";
 import { useSelector, useDispatch } from "react-redux";
-import { carAction, StoreState } from "../store/car-slice";
+import { carAction } from "@/store/car-slice";
 import Filter from "@/components/Filter";
 import CustomCarousel from "@/components/CustomCarousel";
+import { StoreState } from "@/types/State.models";
+import { Spinner, View } from "vcc-ui";
 
 interface Props {
 	carsList?: CarItem[];
 }
-// const Home: NextPage = (CarsList:CarItem[]) => {
 const Home: NextPage = (props: Props) => {
 	const { carsList = [] } = props;
 	const dispatch = useDispatch();
@@ -36,14 +36,20 @@ const Home: NextPage = (props: Props) => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<main className={styles.mains}>
-				<Filter />
-				<CustomCarousel>
-					{updatedCarsList.map((carItem: CarItem) => {
-						return <CarCard carItem={carItem} key={carItem.id} />;
-					})}
-				</CustomCarousel>
-			</main>
+			{updatedCarsList.length ? (
+				<main className={styles.mains}>
+					<Filter />
+					<CustomCarousel>
+						{updatedCarsList.map((carItem: CarItem) => {
+							return <CarCard carItem={carItem} key={carItem.id} />;
+						})}
+					</CustomCarousel>
+				</main>
+			) : (
+				<View>
+					<Spinner size={48} />
+				</View>
+			)}
 
 			<footer className={styles.footer}>
 				<a

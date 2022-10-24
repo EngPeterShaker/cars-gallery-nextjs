@@ -44,7 +44,7 @@ const LearnCar = (props: Props) => {
 				Home
 			</LinkStyled>
 			<CardContainer>
-				<div>Let's learn more about {id}</div>
+				<div>Here You can learn more about{id}</div>
 				{SelectedCarItem && (
 					<CarCard carItem={SelectedCarItem} showLinks={false} />
 				)}

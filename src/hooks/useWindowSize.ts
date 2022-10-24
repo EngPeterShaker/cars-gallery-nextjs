@@ -1,26 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 // Define general type for useWindowSize hook, which includes width and height
 export interface Size {
 	width: number | undefined;
 	height: number | undefined;
 }
 
-// Hook
+// Custom Hook
 export default function useWindowSize(): "Desktop" | "Tablet" | "Mobile" {
-	// Initialize state with undefined width/height so server and client renders match
-	// Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
 	const [windowSize, setWindowSize] = useState<Size>({
 		width: undefined,
 		height: undefined,
 	});
 	const [windowWidth, setWindowWidth] = useState<number>(0);
-
-	function handleResize() {
-		// Set window width to state
-		console.log(`window.innerWidth`, window.innerWidth);
+	const handleResize = useCallback(() => {
 		if (window.innerWidth !== windowSize.width)
 			setWindowWidth(window.innerWidth);
-	}
+	}, [windowSize.width]);
+
 	useEffect(() => {
 		// Add event listener
 		window.addEventListener("resize", handleResize);
@@ -37,5 +33,4 @@ export default function useWindowSize(): "Desktop" | "Tablet" | "Mobile" {
 	} else {
 		return "Mobile";
 	}
-
 }
