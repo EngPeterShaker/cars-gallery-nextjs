@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/016a0350-2c3d-4570-935c-bc64dcf83994/deploy-status)](https://app.netlify.com/sites/peter-cars-gallery/deploys)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -10,13 +12,36 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:8080](http://localhost:8080) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Project Features:
+* App is bootstrapped using **NEXT**, to handle Server-side Rendering 
+* **Dynamic Routing** for (/Learn) & (/Shop) routes 
+* **Responsive** carousel for mobile and desktop (mobile-first) 
+* Using **Redux toolkit** as a state-manager (using the slice approach) 
+* Using **VCC-UI** as a theme , config provider 
+* Using **VCC-UI** as a component library 
+* **E2E Testing** using **Cypress** 
+* **UNIT testing** using React-testing-library and Jest with Cypress-Components 
+* The project is deployed automatically via **CI/CD** on Netlify here: https://app.netlify.com/sites/peter-cars-gallery/overview
+* Styled-components library is used to handle **css-in-js** 
+* **Typescript** is using to maintain type safety all over the app 
+* **Reusable** components are used to avoid tightly-coupled components 
+* **Memoizing** expensive function to obtain high-performance app 
+* **Conditional Rendering** for Filters ,when needed (if items per page > 4 ) 
+* Custom **React Hook** to get current screen width
+
+## running Test cases
+
+First, run the development server:
+
+```bash
+npm run cypress
+# or
+yarn cypress
+```
 
 ## Learn More
 
