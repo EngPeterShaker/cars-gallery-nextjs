@@ -1,3 +1,4 @@
+## CI/CD
 [![Netlify Status](https://api.netlify.com/api/v1/badges/016a0350-2c3d-4570-935c-bc64dcf83994/deploy-status)](https://app.netlify.com/sites/peter-cars-gallery/deploys)
 Deplyed to Netlify on the [This link](https://app.netlify.com/sites/peter-cars-gallery/deploys)
 
